@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import { DB_NAME } from "../constants.js";
-import { MONGODB_URI, PORT } from "../../config.js";
+import { DB_NAME, MONGODB_URI, PORT } from "../../config.js";
 
 
 const connectDB = async () => {
@@ -14,4 +13,5 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+
 export default connectDB
