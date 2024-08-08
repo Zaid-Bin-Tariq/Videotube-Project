@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
-import { CLOUD_NAME, API_KEY, API_SECRET } from "../../config";
+import { CLOUD_NAME, API_KEY, API_SECRET } from "../../config.js";
 
 import { v2 as cloudinary } from "cloudinary";
 
