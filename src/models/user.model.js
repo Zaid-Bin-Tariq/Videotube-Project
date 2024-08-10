@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken";
-import bcrtpt from 'bcrypt';
-import { ACCESS_TOKEN_SECRET, ACCESS_TOKEN_EXPIRY, REFRESH_TOKEN_EXPIRY, REFRESH_TOKEN_SECRET } from "../../config";
+import bcrypt from 'bcrypt';
+import { ACCESS_TOKEN_SECRET, ACCESS_TOKEN_EXPIRY, REFRESH_TOKEN_EXPIRY, REFRESH_TOKEN_SECRET } from "../../config.js";
 
 const userSchema = new Schema(
   {
@@ -54,12 +54,12 @@ const userSchema = new Schema(
 
 userSchema.pre("save", async function (next) {
   if(!this.isModified("password")) return next();
-  this.password = await bcrtpt.hash(this.password, 10)
+  this.password = await bcrypt.hash(this.password, 10)
   next()
 })
 
 userSchema.methods.isPasswordCorrect = async function (password) {
-  return await bcrtpt.compare(password, this.password)
+  return await bcrypt.compare(password, this.password)
 }
 
 userSchema.methods.generateAccessToken = function () {
